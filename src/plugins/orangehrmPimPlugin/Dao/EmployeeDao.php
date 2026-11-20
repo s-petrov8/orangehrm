@@ -261,10 +261,10 @@ class EmployeeDao extends BaseDao
         $q->andWhere('r.supervisor = :supervisorId')
             ->setParameter('supervisorId', $supervisorId);
 
-        /** @var ReportTo[] $reportToArray */
-        $reportToArray = $q->getQuery()->execute();
+        /** @var ReportTo[] $reportToList */
+        $reportToList = $q->getQuery()->execute();
 
-        foreach ($reportToArray as $reportTo) {
+        foreach ($reportToList as $reportTo) {
             $subordinateEmpNumber = $reportTo->getSubordinate()->getEmpNumber();
             array_push($employeeIdList, $subordinateEmpNumber);
 
