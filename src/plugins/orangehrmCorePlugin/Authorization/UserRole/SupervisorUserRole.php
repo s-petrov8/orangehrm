@@ -88,7 +88,7 @@ class SupervisorUserRole extends AbstractUserRole
         $empNumbers = [];
         $empNumber = $this->getEmployeeNumber();
         if (!empty($empNumber)) {
-            $empNumbers = $this->getEmployeeService()->getSubordinateIdListBySupervisorId($empNumber);
+            $empNumbers = $this->getEmployeeService()->getSubordinateIdListBySupervisorId($empNumber, true);
         }
         return $empNumbers;
     }
