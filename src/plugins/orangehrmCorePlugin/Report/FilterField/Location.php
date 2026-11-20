@@ -37,7 +37,7 @@ class Location extends FilterField implements ValueXNormalizable
     {
         $qb = $queryBuilderWrapper->getQueryBuilder();
         if ($this->getOperator() === Operator::IN && !is_null($this->getX())) {
-            // explode comma seperated locations when defining the PIM report
+            // explode comma separated locations when defining the PIM report
             $locationIds = explode(',', $this->getX());
 
             // remove `-1` which used in 4.x when select by country
@@ -54,7 +54,7 @@ class Location extends FilterField implements ValueXNormalizable
      */
     private function getLocationIds(): array
     {
-        // explode comma seperated locations chain when defining the PIM report
+        // explode comma separated locations chain when defining the PIM report
         return explode(',', $this->getX());
     }
 
