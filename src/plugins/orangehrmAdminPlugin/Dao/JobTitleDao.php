@@ -161,8 +161,8 @@ class JobTitleDao extends BaseDao
     {
         $q = $this->createQueryBuilder(JobSpecificationAttachment::class, 'attachment');
         $q->select('attachment.id');
-        $result = $q->getQuery()->getArrayResult();
-        return array_column($result, 'id');
+        $rows = $q->getQuery()->getArrayResult();
+        return array_column($rows, 'id');
     }
 
     /**
