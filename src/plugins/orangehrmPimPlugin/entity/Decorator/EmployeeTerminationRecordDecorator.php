@@ -55,8 +55,8 @@ class EmployeeTerminationRecordDecorator
      */
     public function getDate(): ?string
     {
-        $date = $this->getEmployeeTerminationRecord()->getDate();
-        return $this->getDateTimeHelper()->formatDate($date);
+        $terminationDate = $this->getEmployeeTerminationRecord()->getDate();
+        return $this->getDateTimeHelper()->formatDate($terminationDate);
     }
 
     /**
