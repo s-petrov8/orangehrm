@@ -47,13 +47,13 @@ class CsvDataImportService
         if ($headerValues == $employeesDataArray[0]) {
             for ($i = 1; $i < sizeof($employeesDataArray); $i++) {
                 try {
-                    $result = $instance->import($employeesDataArray[$i]);
+                    $imported = $instance->import($employeesDataArray[$i]);
                 } catch (Throwable $e) {
                     $this->getLogger()->error($e->getMessage());
                     $this->getLogger()->error($e->getTraceAsString());
-                    $result = false;
+                    $imported = false;
                 }
-                if ($result) {
+                if ($imported) {
                     $rowsImported++;
                 } else {
                     $failList[] = $i + 1; // since the first row contains headers
