@@ -341,7 +341,7 @@ class LeaveRequestDao extends BaseDao
             );
             $orClauses->add(
                 $q->expr()->andX(
-                    $q->expr()->lt(':startDateAndTime', $leaveDateAndEndTime),
+                    $q->expr()->lte(':startDateAndTime', $leaveDateAndEndTime),
                     $q->expr()->lt($leaveDateAndEndTime, ':endDateAndTime')
                 )
             );
