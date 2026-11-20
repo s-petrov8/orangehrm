@@ -88,9 +88,9 @@ class TimezonesAPI extends Endpoint implements CollectionEndpoint
         $identifiers = DateTimeZone::listIdentifiers();
 
         if (is_null($filterName)) {
-            $filteredIdentifiers = $identifiers;
+            $identifierList = $identifiers;
         } else {
-            $filteredIdentifiers = array_filter(
+            $identifierList = array_filter(
                 $identifiers,
                 function ($item) use ($filterName) {
                     if (stripos($item, $filterName) !== false) {
@@ -102,7 +102,7 @@ class TimezonesAPI extends Endpoint implements CollectionEndpoint
         }
 
         $timezones = [];
-        foreach ($filteredIdentifiers as $timezoneIdentifier) {
+        foreach ($identifierList as $timezoneIdentifier) {
             $timezone = new DateTimeZone($timezoneIdentifier);
             $offsetInSeconds = $timezone->getOffset($this->getDateTimeHelper()->getNow());
             $offset = $this->getNumberHelper()->numberFormat((float)($offsetInSeconds / 3600), 1);
