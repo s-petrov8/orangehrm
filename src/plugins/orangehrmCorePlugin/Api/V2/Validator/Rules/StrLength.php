@@ -48,8 +48,8 @@ class StrLength extends AbstractRule
      */
     public function validate($input): bool
     {
-        $length = $this->getTextHelper()->strLength($input, $this->encoding);
-        return $this->validateMin($length) && $this->validateMax($length);
+        $textLength = $this->getTextHelper()->strLength($input, $this->encoding);
+        return $this->validateMin($textLength) && $this->validateMax($textLength);
     }
 
     /**
