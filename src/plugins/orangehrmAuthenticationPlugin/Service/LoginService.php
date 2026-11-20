@@ -54,12 +54,12 @@ class LoginService
         $user = $this->getUserService()
             ->geUserDao()
             ->getUserByUserName($credentials->getUsername());
-        $loginLog = new LoginLog();
-        $loginLog->setUserId($user->getId());
-        $loginLog->setUserName($user->getUserName());
-        $loginLog->setUserRoleName($user->getUserRole()->getName());
-        $loginLog->setUserRolePredefined($user->getUserRole()->isPredefined());
-        return $this->getLoginLogDao()->saveLoginLog($loginLog);
+        $entry = new LoginLog();
+        $entry->setUserId($user->getId());
+        $entry->setUserName($user->getUserName());
+        $entry->setUserRoleName($user->getUserRole()->getName());
+        $entry->setUserRolePredefined($user->getUserRole()->isPredefined());
+        return $this->getLoginLogDao()->saveLoginLog($entry);
     }
 
     /**
