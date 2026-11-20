@@ -68,9 +68,9 @@ class AttendanceRecordListModel implements CollectionNormalizable, ModelConstruc
      */
     public function toArray(): array
     {
-        $result = [];
+        $items = [];
         foreach ($this->attendanceRecords as $employeeAttendanceRecord) {
-            $result[] = [
+            $items[] = [
                 'id' => $employeeAttendanceRecord['id'],
                 'punchIn' => [
                     'userDate' => $this->getDateTimeHelper()->formatDateTimeToYmd(
@@ -96,6 +96,6 @@ class AttendanceRecordListModel implements CollectionNormalizable, ModelConstruc
                     ->numberFormat((float)$employeeAttendanceRecord['total'] / 3600, 2)
             ];
         }
-        return $result;
+        return $items;
     }
 }
