@@ -220,7 +220,7 @@ class EmployeeTerminationAPI extends Endpoint implements CrudEndpoint
         $employeeTerminationRecord->setNote(
             $this->getRequestParams()->getStringOrNull(
                 RequestParams::PARAM_TYPE_BODY,
-                self::PARAMETER_NOTE
+                self::PARAMETER_DATE
             )
         );
     }
