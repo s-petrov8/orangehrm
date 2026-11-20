@@ -102,9 +102,9 @@ class NationalityDao extends BaseDao
     public function getNationalityByName(string $name): ?Nationality
     {
         $query = $this->createQueryBuilder(Nationality::class, 'n');
-        $trimmed = trim($name, ' ');
+        $cleanName = trim($name, ' ');
         $query->andWhere('n.name = :name');
-        $query->setParameter('name', $trimmed);
+        $query->setParameter('name', $cleanName);
         return $query->getQuery()->getOneOrNullResult();
     }
 
@@ -129,9 +129,9 @@ class NationalityDao extends BaseDao
     public function isExistingNationalityName(string $nationalityName): bool
     {
         $q = $this->createQueryBuilder(Nationality::class, 'n');
-        $trimmed = trim($nationalityName, ' ');
+        $cleanName = trim($nationalityName, ' ');
         $q->where('n.name = :name');
-        $q->setParameter('name', $trimmed);
+        $q->setParameter('name', $cleanName);
         $count = $this->count($q);
         if ($count > 0) {
             return true;
