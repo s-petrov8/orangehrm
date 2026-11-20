@@ -131,10 +131,10 @@ class EmployeeSubordinateAPI extends Endpoint implements CrudEndpoint
             $empNumber
         );
 
-        $empSubordinates = $this->getEmployeeReportingMethodService()->getSubordinateListForEmployee($employeeSubordinateSearchFilterParams);
+        $subordinateRecords = $this->getEmployeeReportingMethodService()->getSubordinateListForEmployee($employeeSubordinateSearchFilterParams);
         return new EndpointCollectionResult(
             EmployeeSubordinateModel::class,
-            $empSubordinates,
+            $subordinateRecords,
             new ParameterBag(
                 [
                     CommonParams::PARAMETER_EMP_NUMBER => $empNumber,
