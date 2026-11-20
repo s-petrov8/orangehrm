@@ -57,10 +57,10 @@ class ProjectReportData implements ReportData
         $includeTimesheet = $this->filterParams->getIncludeApproveTimesheet() === null ?
             ProjectReportSearchFilterParams::INCLUDE_TIMESHEET_ALL : $this->filterParams->getIncludeApproveTimesheet();
         $projectActivityDetailsReportURL = '/time/displayProjectActivityDetailsReport';
-        $result = [];
+        $rows = [];
         foreach ($projectActivities as $projectActivity) {
             $activityId = $projectActivity['activityId'];
-            $result[] = [
+            $rows[] = [
                 ProjectReport::PARAMETER_ACTIVITY_ID => $activityId,
                 ProjectReport::PARAMETER_ACTIVITY_NAME => $projectActivity['name'],
                 ProjectReport::PARAMETER_ACTIVITY_DELETED => $projectActivity['deleted'],
@@ -76,7 +76,7 @@ class ProjectReportData implements ReportData
                 ],
             ];
         }
-        return $result;
+        return $rows;
     }
 
     /**
