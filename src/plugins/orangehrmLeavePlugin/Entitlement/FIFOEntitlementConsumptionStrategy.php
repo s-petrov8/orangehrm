@@ -69,9 +69,9 @@ class FIFOEntitlementConsumptionStrategy implements EntitlementConsumptionStrate
         $current = [];
         $change = [];
 
-        $numDates = count($leaveDates);
+        $dateCount = count($leaveDates);
         $leaveLength = 0;
-        if ($numDates > 0) {
+        if ($dateCount > 0) {
             $fromDate = null;
             $toDate = null;
 
