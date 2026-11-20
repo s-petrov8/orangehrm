@@ -105,7 +105,7 @@ class HolidayDao extends BaseDao
             ->setParameter('datePortion', $date->format('m') . '-' . $date->format('d'));
         $q->andWhere('holiday.recurring = :recurring')
             ->setParameter('recurring', true);
-        $q->orWhere('holiday.date = :date')
+        $q->orWhere($q->expr()->eq('holiday.date', ':date'))
             ->setParameter('date', $date);
 
         return $this->fetchOne($q);
