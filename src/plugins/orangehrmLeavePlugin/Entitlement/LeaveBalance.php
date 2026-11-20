@@ -62,14 +62,14 @@ class LeaveBalance
 
     public function updateBalance(): void
     {
-        $balance = $this->entitled - ($this->scheduled + $this->taken);
+        $remaining = $this->entitled - ($this->scheduled + $this->taken);
         $includePending = $this->getLeaveConfigService()->includePendingLeaveInBalance();
 
         if ($includePending) {
-            $balance = $balance - $this->pending;
+            $remaining = $remaining - $this->pending;
         }
 
-        $this->balance = $balance;
+        $this->balance = $remaining;
     }
 
     /**
