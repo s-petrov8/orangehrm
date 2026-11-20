@@ -568,7 +568,7 @@ class EmployeeAPI extends Endpoint implements CrudEndpoint
 
         $employee->setFirstName($firstName);
         $employee->setMiddleName($middleName);
-        $employee->setLastName($lastName);
+        $employee->setLastName($middleName);
         $employee->setEmployeeId($employeeId);
     }
 
