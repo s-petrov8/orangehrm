@@ -48,7 +48,7 @@ class EmployeeTerminationService
      */
     public function getTerminationReasonsArray(): array
     {
-        $terminationReasons = $this->getEmployeeTerminationDao()->getTerminationReasonList();
-        return $this->getNormalizerService()->normalizeArray(TerminationReasonModel::class, $terminationReasons);
+        $reasons = $this->getEmployeeTerminationDao()->getTerminationReasonList();
+        return $this->getNormalizerService()->normalizeArray(TerminationReasonModel::class, $reasons);
     }
 }
