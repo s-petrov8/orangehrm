@@ -62,7 +62,7 @@ class CopyActivityModel implements CollectionNormalizable, ModelConstructorArgsA
      */
     public function toArray(): array
     {
-        $result = [];
+        $items = [];
         $duplicatedActivities = [];
         foreach ($this->duplicatedActivities as $duplicatedActivity) {
             $duplicatedActivities [$duplicatedActivity->getName()] = $duplicatedActivity->getId();
@@ -70,13 +70,13 @@ class CopyActivityModel implements CollectionNormalizable, ModelConstructorArgsA
 
         foreach ($this->projectActivitiesForFromProject as $fromProjectActivity) {
             $name = $fromProjectActivity->getName();
-            $result[] = [
+            $items[] = [
                 'id' => $fromProjectActivity->getId(),
                 'name' => $name,
                 'unique' => !isset($duplicatedActivities[$name])
             ];
         }
 
-        return $result;
+        return $items;
     }
 }
