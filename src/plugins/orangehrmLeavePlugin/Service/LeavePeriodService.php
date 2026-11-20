@@ -174,11 +174,11 @@ class LeavePeriodService
             if ($firstCreatedDate < $startDate) {
                 $startDate->sub(new DateInterval('P1Y'));
             }
-            $tempDate = $startDate;
+            $cursorDate = $startDate;
             $i = 0;
-            while ($tempDate <= $endDate) {
-                $projectedStartDate = ($i == 0) ? $tempDate : new DateTime(
-                    date('Y-m-d', strtotime($tempDate->format('Y-m-d') . '+1 day'))
+            while ($cursorDate <= $endDate) {
+                $projectedStartDate = ($i == 0) ? $cursorDate : new DateTime(
+                    date('Y-m-d', strtotime($cursorDate->format('Y-m-d') . '+1 day'))
                 );
                 $projectedEndDate = new DateTime(
                     date('Y-m-d', strtotime($projectedStartDate->format('Y-m-d') . ' +1 year -1 day'))
@@ -199,7 +199,7 @@ class LeavePeriodService
                     }
                 }
 
-                $tempDate = $projectedEndDate;
+                $cursorDate = $projectedEndDate;
 
                 $leavePeriodList[] = new LeavePeriod($projectedStartDate, $projectedEndDate);
                 $i++;
