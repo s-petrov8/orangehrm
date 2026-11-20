@@ -101,7 +101,7 @@ class HolidayDao extends BaseDao
     public function getHolidayByDate(DateTime $date): ?Holiday
     {
         $q = $this->createQueryBuilder(Holiday::class, 'holiday');
-        $q->andWhere($q->expr()->eq($q->expr()->substring('holiday.date', 6), ':datePortion'))
+        $q->andWhere($q->expr()->eq($q->expr()->substring('holiday.date', 7), ':datePortion'))
             ->setParameter('datePortion', $date->format('m') . '-' . $date->format('d'));
         $q->andWhere('holiday.recurring = :recurring')
             ->setParameter('recurring', true);
