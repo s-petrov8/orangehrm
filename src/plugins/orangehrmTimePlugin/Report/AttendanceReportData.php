@@ -52,17 +52,17 @@ class AttendanceReportData implements ReportData
             ->getAttendanceDao()
             ->getAttendanceReportCriteriaList($this->filterParams);
 
-        $result = [];
+        $rows = [];
         foreach ($employeeAttendanceRecords as $employeeAttendanceRecord) {
             $termination = $employeeAttendanceRecord['terminationId'];
-            $result[] = [
+            $rows[] = [
                 AttendanceReport::PARAMETER_EMPLOYEE_NAME => $termination === null ? $employeeAttendanceRecord['fullName'] : $employeeAttendanceRecord['fullName'] . ' ' . $this->getI18NHelper()->transBySource('(Past Employee)'),
                 AttendanceReport::PARAMETER_TIME => $this->getNumberHelper()
                     ->numberFormat((float)$employeeAttendanceRecord['total'] / 3600, 2)
             ];
         }
 
-        return $result;
+        return $rows;
     }
 
     /**
