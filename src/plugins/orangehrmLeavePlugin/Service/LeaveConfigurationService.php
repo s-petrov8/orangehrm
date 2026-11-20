@@ -51,7 +51,7 @@ class LeaveConfigurationService extends ConfigService
     public function includePendingLeaveInBalance(): bool
     {
         $includePendingLeaveInBalance = $this->_getConfigValue(self::KEY_INCLUDE_PENDING_LEAVE_IN_BALANCE);
-        return $includePendingLeaveInBalance !== '0';
+        return $includePendingLeaveInBalance === '0';
     }
 
     /**
