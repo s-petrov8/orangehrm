@@ -494,13 +494,13 @@ class LeaveEntitlementDao extends BaseDao
 
         $pendingIds = $this->getPendingStatusIds();
 
-        $pendingIdList = is_array($pendingIds) ? implode(',', $pendingIds) : $pendingIds;
+        $pendingStatusList = is_array($pendingIds) ? implode(',', $pendingIds) : $pendingIds;
 
         // TODO:: re-write using doctrine query builder
         $sql = 'SELECT le.no_of_days AS entitled, ' .
             'le.days_used AS used, ' .
             'sum(IF(l.status = 2, lle.length_days, 0)) AS scheduled, ' .
-            'sum(IF(l.status IN (' . $pendingIdList . '), lle.length_days, 0)) AS pending, ' .
+            'sum(IF(l.status IN (' . $pendingStatusList . '), lle.length_days, 0)) AS pending, ' .
             'sum(IF(l.status = 3, l.length_days, 0)) AS taken ' .
             'FROM ohrm_leave_entitlement le LEFT JOIN ' .
             'ohrm_leave_leave_entitlement lle ON le.id = lle.entitlement_id LEFT JOIN ' .
@@ -527,7 +527,7 @@ class LeaveEntitlementDao extends BaseDao
                 '0 AS entitled, ' .
                 'SUM(l.length_days) AS used, ' .
                 'sum(IF(l.status = 2, l.length_days, 0)) AS scheduled, ' .
-                'sum(IF(l.status IN (' . $pendingIdList . '), l.length_days, 0)) AS pending, ' .
+                'sum(IF(l.status IN (' . $pendingStatusList . '), l.length_days, 0)) AS pending, ' .
                 'sum(IF(l.status = 3, l.length_days, 0)) AS taken ' .
                 'FROM ohrm_leave l ' .
                 'LEFT JOIN ohrm_leave_leave_entitlement lle ON (lle.leave_id = l.id) ' .
