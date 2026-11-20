@@ -51,19 +51,19 @@ class EmployeeReportData implements ReportData
         $timesheetItems = $this->getTimesheetService()
             ->getTimesheetDao()
             ->getTimesheetItemsForEmployeeReport($this->filterParams);
-        $result = [];
+        $rows = [];
         foreach ($timesheetItems as $timesheetItem) {
             $projectName = $timesheetItem['customerName']
                 . ' - ' . $timesheetItem['projectName'];
             $activityName = $timesheetItem['activityName'];
             $duration = $this->getNumberHelper()->numberFormat($timesheetItem['totalDurationByGroup'] / 3600, 2);
-            $result[] = [
+            $rows[] = [
                 EmployeeReport::PARAMETER_PROJECT_NAME => $projectName,
                 EmployeeReport::PARAMETER_ACTIVITY_NAME => $activityName,
                 EmployeeReport::PARAMETER_DURATION => $duration
             ];
         }
-        return $result;
+        return $rows;
     }
 
     public function getMeta(): ?ParameterBag
