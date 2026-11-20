@@ -412,7 +412,7 @@ class ReportGeneratorService
 
             foreach ($value['fields'] as $field) {
                 /** creating an array that contains the display field id (`ohrm_display_field` table)
-                 * Here fields is the value pair of $fieldGroup associative array which  contains the id of `ohrm_display_field` table
+                 * Here fields is the value pair of $fieldGroup associative array which contains the id of `ohrm_display_field` table
                  **/
                 array_push($selectedDisplayFieldIds, $field);
             }
