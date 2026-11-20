@@ -43,7 +43,7 @@ class AuthenticationService
         if (!$user instanceof User || $user->isDeleted()) {
             return false;
         } else {
-            if (!$user->getStatus()) {
+            if ($user->getStatus() === 0) {
                 throw AuthenticationException::userDisabled();
             } elseif ($user->getEmpNumber() === null) {
                 throw AuthenticationException::employeeNotAssigned();
