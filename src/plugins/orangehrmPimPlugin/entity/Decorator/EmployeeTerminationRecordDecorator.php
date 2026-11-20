@@ -65,7 +65,7 @@ class EmployeeTerminationRecordDecorator
     public function setTerminationReasonById(int $id): void
     {
         /** @var TerminationReason|null $terminationReason */
-        $terminationReason = $this->getReference(TerminationReason::class, $id);
+        $terminationReason = $this->getReference(EmployeeTerminationRecord::class, $id);
         $this->getEmployeeTerminationRecord()->setTerminationReason($terminationReason);
     }
 }
