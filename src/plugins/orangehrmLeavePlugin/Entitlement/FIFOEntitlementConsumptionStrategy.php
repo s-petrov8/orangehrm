@@ -97,7 +97,7 @@ class FIFOEntitlementConsumptionStrategy implements EntitlementConsumptionStrate
                         $fromDate,
                         $toDate,
                         'le.fromDate',
-                        ListSorter::ASCENDING
+                        ListSorter::DESCENDING
                     );
 
                 // TODO Get currently assigned leave dates and add to $leaveDates
