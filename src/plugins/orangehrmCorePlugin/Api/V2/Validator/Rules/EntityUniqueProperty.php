@@ -77,7 +77,7 @@ class EntityUniqueProperty extends AbstractRule
         // Match all entities that DON'T have these values
         if ($this->option->hasIgnoreValues()) {
             foreach ($this->option->getIgnoreValues() as $property => $value) {
-                $qb->andWhere($qb->expr()->neq('entity.' . $property, ':' . $property . '_value'))
+                $qb->andWhere($qb->expr()->eq('entity.' . $property, ':' . $property . '_value'))
                     ->setParameter($property . '_value', $value);
             }
         }
