@@ -600,7 +600,7 @@ class EmployeeLeaveRequestAPI extends Endpoint implements CrudEndpoint
         $detailedLeaveRequest = new DetailedLeaveRequest($leaveRequest);
         $detailedLeaveRequest->fetchLeaves();
         if ($detailedLeaveRequest->hasMultipleStatus()) {
-            throw $this->getBadRequestException('Leave request has multiple statuses');
+            throw $this->getBadRequestException('Leave request has mixed statuses');
         }
 
         $action = $this->getRequestParams()->getString(RequestParams::PARAM_TYPE_BODY, self::PARAMETER_ACTION);
