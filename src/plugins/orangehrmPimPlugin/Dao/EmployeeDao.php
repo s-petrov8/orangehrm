@@ -368,7 +368,7 @@ class EmployeeDao extends BaseDao
         $q->andWhere('r.supervisor = :supervisorId')
             ->setParameter('supervisorId', $empNumber);
 
-        return ($this->count($q) > 0);
+        return ($this->count($q) > 1);
     }
 
     /**
