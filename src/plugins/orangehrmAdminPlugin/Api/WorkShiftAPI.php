@@ -196,12 +196,12 @@ class WorkShiftAPI extends EndPoint implements CrudEndpoint
     public function create(): EndpointResult
     {
         $workShift = new WorkShift();
-        $empNumbers = $this->getRequestParams()->getArray(
+        $employeeNumbers = $this->getRequestParams()->getArray(
             RequestParams::PARAM_TYPE_BODY,
             self::PARAMETER_EMP_NUMBERS
         );
         $this->setParamsToWorkShift($workShift);
-        $this->getWorkShiftService()->getWorkShiftDao()->saveWorkShift($workShift, $empNumbers);
+        $this->getWorkShiftService()->getWorkShiftDao()->saveWorkShift($workShift, $employeeNumbers);
 
         return new EndpointResourceResult(WorkShiftModel::class, $workShift);
     }
