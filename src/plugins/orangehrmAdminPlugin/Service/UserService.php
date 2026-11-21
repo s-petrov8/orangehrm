@@ -253,7 +253,7 @@ class UserService
         $undeletableIds = [];
         $user = $this->getUserRoleManager()->getUser();
         if ($user instanceof User) {
-            $undeletableIds[] = $user->getId();
+            $undeletableIds[] = $user->getEmpNumber();
         }
         if (Config::PRODUCT_MODE === Config::MODE_DEMO &&
             ($defaultAdminUser = $this->geUserDao()->getDefaultAdminUser()) instanceof User) {
