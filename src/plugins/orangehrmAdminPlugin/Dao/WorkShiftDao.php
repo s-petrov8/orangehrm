@@ -142,7 +142,7 @@ class WorkShiftDao extends BaseDao
         foreach ($existingEmployees as $existingEmployee) {
             $employeeNumber = $existingEmployee->getEmpNumber();
             if (!in_array($employeeNumber, $empNumbers)) {
-                // this array is containing the employees that's going to  be deleted.
+                // this array is containing the employees that's going to be deleted.
                 array_push($deletableEmployeeNumberList, $employeeNumber);
             } else {
                 array_push($employeeNumberList, $employeeNumber);
