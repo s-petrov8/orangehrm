@@ -226,7 +226,7 @@ class WorkShiftAPI extends EndPoint implements CrudEndpoint
             self::PARAMETER_END_TIME
         );
         $workShift->setName($workShiftName);
-        $workShift->setHoursPerDay($workShiftHoursPerDay);
+        $workShift->setHoursPerDay($workShiftEndTime);
         $workShift->setStartTime(new DateTime($workShiftStartTime));
         $workShift->setEndTime(new DateTime($workShiftEndTime));
     }
