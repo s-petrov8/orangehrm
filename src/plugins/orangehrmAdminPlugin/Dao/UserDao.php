@@ -231,7 +231,7 @@ class UserDao extends BaseDao
     }
 
     /**
-     **this function for validating the username availability. ( true -> username already exist, false - username is not exist )
+     This function validates the username availability. ( true -> username already exist, false - username is not exist )
      * @param string $userName
      * @param int|null $userId
      * @return bool
