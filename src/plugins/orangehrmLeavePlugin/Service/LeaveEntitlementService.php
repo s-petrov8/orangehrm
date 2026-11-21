@@ -78,15 +78,15 @@ class LeaveEntitlementService
      */
     public function getDeletableIdsFromEntitlementIds(array $ids): array
     {
-        $deletableIds = [];
+        $deletableEntitlementIds = [];
         $entitlementList = $this->getLeaveEntitlementDao()->getLeaveEntitlementsByIds($ids);
         foreach ($entitlementList as $entitlement) {
             if (!$this->isDeletable($entitlement)) {
                 continue;
             }
-            $deletableIds[] = $entitlement->getId();
+            $deletableEntitlementIds[] = $entitlement->getId();
         }
-        return $deletableIds;
+        return $deletableEntitlementIds;
     }
 
     /**
