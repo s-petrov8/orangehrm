@@ -312,10 +312,10 @@ class LeaveEntitlementDao extends BaseDao
      */
     public function getLeaveEntitlementsByIds(array $ids): array
     {
-        $q = $this->createQueryBuilder(LeaveEntitlement::class, 'le');
-        $q->where($q->expr()->in('le.id', ':ids'))
+        $qb = $this->createQueryBuilder(LeaveEntitlement::class, 'le');
+        $qb->where($qb->expr()->in('le.id', ':ids'))
             ->setParameter('ids', $ids);
-        return $q->getQuery()->execute();
+        return $qb->getQuery()->execute();
     }
 
     /**
