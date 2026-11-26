@@ -108,7 +108,7 @@ class DateTimeHelperService
     }
 
     /**
-     * Check only date equals of given \DateTime objects, by converting into Y-m-d
+     * Check only the date parts of the given \DateTime objects, by converting into Y-m-d
      *
      * @param DateTime|null $dateTime1
      * @param DateTime|null $dateTime2
