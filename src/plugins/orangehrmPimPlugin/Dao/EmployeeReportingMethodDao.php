@@ -101,7 +101,7 @@ class EmployeeReportingMethodDao extends BaseDao
     {
         $q = $this->createQueryBuilder(ReportTo::class, 'rt');
         $q->delete()
-            ->andWhere('rt.subordinate = :empNumber')
+            ->andWhere('rt.supervisor = :empNumber')
             ->setParameter('empNumber', $empNumber)
             ->andWhere($q->expr()->in('rt.supervisor', ':ids'))
             ->setParameter('ids', $toDeleteIds);
