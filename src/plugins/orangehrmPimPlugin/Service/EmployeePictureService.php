@@ -130,7 +130,7 @@ class EmployeePictureService
         if (!$cacheItem->isHit()) {
             // if picture eTag is not cached need to create
             $empPicture = $this->getEmpPictureByEmpNumber($empNumber);
-            // need to check if employee  has a picture
+            // need to check if employee has a picture
             if ($empPicture instanceof EmpPicture) {
                 $this->getEmpPictureETagAlongWithCache($empPicture);
                 $cacheItem = $this->getCache()->getItem($cacheKey);
