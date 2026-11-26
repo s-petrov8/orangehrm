@@ -124,6 +124,7 @@ class LeaveRequestCommentAPI extends Endpoint implements CollectionEndpoint
 
         $this->checkLeaveRequestAccessible($leaveRequest);
 
+        // The comments belong to the request named in the URL
         $leaveRequestCommentSearchFilterParams = new LeaveRequestCommentSearchFilterParams();
 
         $leaveRequestCommentSearchFilterParams->setLeaveRequestId($leaveRequestId);
