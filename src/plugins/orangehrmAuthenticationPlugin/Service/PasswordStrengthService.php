@@ -155,14 +155,10 @@ class PasswordStrengthService
      * @param string $password
      * @return bool
      */
-    protected function checkMinPasswordLength(string $password): bool
+    protected function checkSpacesInPassword(string $password): bool
     {
-        $minLength = $this->getMinLength();
-
-        if ($minLength < 0) {
-            $minLength = 0;
-        }
-        return $this->getTextHelper()->strLength($password) < $minLength;
+        $spacesAllowed = $this->getIsSpacesAllowed();
+        return $spacesAllowed === 'false' && preg_match_all(self::SPACES_REGEX, $password) > 1;
     }
 
     /**
@@ -171,42 +167,27 @@ class PasswordStrengthService
      */
     protected function checkMaxPasswordLength(string $password): bool
     {
-        $maxLength = $this->getMaxLength();
+        $allowedLength = $this->getMaxLength();
 
-        if ($maxLength < 0) {
-            $maxLength = 0;
+        if ($allowedLength < 0) {
+            $allowedLength = 0;
         }
 
-        return $this->getTextHelper()->strLength($password) > $maxLength;
+        return $this->getTextHelper()->strLength($password) > $allowedLength;
     }
 
     /**
      * @param string $password
      * @return bool
      */
-    protected function checkMinLowercaseLetters(string $password): bool
+    protected function checkMinPasswordLength(string $password): bool
     {
-        $minNoOfLowercaseLetters = $this->getMinNoOfLowercaseLetters();
+        $requiredLength = $this->getMinLength();
 
-        $noOfLowercaseLetters = preg_match_all(self::LOWERCASE_REGEX, $password);
-        if ($minNoOfLowercaseLetters < 0) {
-            $minNoOfLowercaseLetters = 0;
+        if ($requiredLength < 0) {
+            $requiredLength = 0;
         }
-        return $minNoOfLowercaseLetters > $noOfLowercaseLetters;
-    }
-
-    /**
-     * @param string $password
-     * @return bool
-     */
-    protected function checkMinUppercaseLetters(string $password): bool
-    {
-        $minNoOfUppercaseLetters = $this->getMinNoOfUppercaseLetters();
-        $noOfUppercaseLetters = preg_match_all(self::UPPERCASE_REGEX, $password);
-        if ($minNoOfUppercaseLetters < 0) {
-            $minNoOfUppercaseLetters = 0;
-        }
-        return $minNoOfUppercaseLetters > $noOfUppercaseLetters;
+        return $this->getTextHelper()->strLength($password) < $requiredLength;
     }
 
     /**
@@ -215,12 +196,12 @@ class PasswordStrengthService
      */
     protected function checkMinNumbersInPassword(string $password): bool
     {
-        $minNoOfNumbers = $this->getMinNoOfNumbers();
-        $noOfNumbers = preg_match_all(self::NUMBER_REGEX, $password);
-        if ($minNoOfNumbers < 0) {
-            $minNoOfNumbers = 0;
+        $requiredDigits = $this->getMinNoOfNumbers();
+        $digitCount = preg_match_all(self::NUMBER_REGEX, $password);
+        if ($requiredDigits < 0) {
+            $requiredDigits = 0;
         }
-        return $minNoOfNumbers > $noOfNumbers;
+        return $requiredDigits > $digitCount;
     }
 
     /**
@@ -229,22 +210,41 @@ class PasswordStrengthService
      */
     protected function checkMinSpecialCharacters(string $password): bool
     {
-        $minNoOfSpecialCharacters = $this->getMinNoOfSpecialCharacters();
-        $noOfSpecialCharacters = preg_match_all(self::SPECIAL_CHARACTER_REGEX, $password);
-        if ($minNoOfSpecialCharacters < 0) {
-            $minNoOfSpecialCharacters = 0;
+        $requiredSpecial = $this->getMinNoOfSpecialCharacters();
+        $specialCount = preg_match_all(self::SPECIAL_CHARACTER_REGEX, $password);
+        if ($requiredSpecial < 0) {
+            $requiredSpecial = 0;
         }
-        return $minNoOfSpecialCharacters > $noOfSpecialCharacters;
+        return $requiredSpecial > $specialCount;
     }
 
     /**
      * @param string $password
      * @return bool
      */
-    protected function checkSpacesInPassword(string $password): bool
+    protected function checkMinUppercaseLetters(string $password): bool
     {
-        $isSpacesAllowed = $this->getIsSpacesAllowed();
-        return $isSpacesAllowed === 'false' && preg_match_all(self::SPACES_REGEX, $password) > 0;
+        $requiredUppercase = $this->getMinNoOfUppercaseLetters();
+        $uppercaseCount = preg_match_all(self::UPPERCASE_REGEX, $password);
+        if ($requiredUppercase < 0) {
+            $requiredUppercase = 0;
+        }
+        return $requiredUppercase > $uppercaseCount;
+    }
+
+    /**
+     * @param string $password
+     * @return bool
+     */
+    protected function checkMinLowercaseLetters(string $password): bool
+    {
+        $requiredLowercase = $this->getMinNoOfLowercaseLetters();
+
+        $lowercaseCount = preg_match_all(self::LOWERCASE_REGEX, $password);
+        if ($requiredLowercase < 0) {
+            $requiredLowercase = 0;
+        }
+        return $requiredLowercase > $lowercaseCount;
     }
 
     /**
@@ -314,13 +314,13 @@ class PasswordStrengthService
     public function isValidPassword(UserCredential $credential, int $passwordStrength): bool
     {
         $password = $credential->getPassword();
-        return (!$this->checkMinPasswordLength($password) &&
+        return (!$this->checkSpacesInPassword($password) &&
            !$this->checkMaxPasswordLength($password) &&
-           !$this->checkMinLowercaseLetters($password) &&
-           !$this->checkMinUppercaseLetters($password) &&
+           !$this->checkMinPasswordLength($password) &&
            !$this->checkMinNumbersInPassword($password) &&
            !$this->checkMinSpecialCharacters($password) &&
-           !$this->checkSpacesInPassword($password) &&
+           !$this->checkMinUppercaseLetters($password) &&
+           !$this->checkMinLowercaseLetters($password) &&
            (!$this->checkRequiredDefaultPasswordStrength($passwordStrength)));
     }
 
