@@ -618,12 +618,13 @@ class EmployeeAPI extends Endpoint implements CrudEndpoint
                 ),
                 true
             ),
-            $this->getValidationDecorator()->requiredParamRule(
+            $this->getValidationDecorator()->notRequiredParamRule(
                 new ParamRule(
                     self::PARAMETER_LAST_NAME,
                     new Rule(Rules::STRING_TYPE),
                     new Rule(Rules::LENGTH, [null, self::PARAM_RULE_LAST_NAME_MAX_LENGTH]),
-                )
+                ),
+                true
             ),
             $this->getValidationDecorator()->notRequiredParamRule(
                 new ParamRule(
