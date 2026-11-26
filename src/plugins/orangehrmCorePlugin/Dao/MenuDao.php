@@ -82,14 +82,14 @@ class MenuDao extends BaseDao
      */
     public function getMenuItemByModuleAndScreen(string $moduleName, string $screenName): ?MenuItem
     {
-        $q = $this->createQueryBuilder(MenuItem::class, 'mi');
-        $q->leftJoin('mi.screen', 'sc');
-        $q->leftJoin('sc.module', 'mo');
-        $q->andWhere('sc.actionUrl = :screenName');
-        $q->andWhere('mo.name = :moduleName');
-        $q->setParameter('screenName', $screenName);
-        $q->setParameter('moduleName', $moduleName);
-        return $this->fetchOne($q);
+        $menuItemQuery = $this->createQueryBuilder(MenuItem::class, 'mi');
+        $menuItemQuery->leftJoin('mi.screen', 'sc');
+        $menuItemQuery->leftJoin('sc.module', 'mo');
+        $menuItemQuery->andWhere('sc.actionUrl = :screenName');
+        $menuItemQuery->andWhere('mo.name = :moduleName');
+        $menuItemQuery->setParameter('screenName', $screenName);
+        $menuItemQuery->setParameter('moduleName', $moduleName);
+        return $this->fetchOne($menuItemQuery);
     }
 
     /**
