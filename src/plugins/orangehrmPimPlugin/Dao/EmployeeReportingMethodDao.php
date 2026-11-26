@@ -137,7 +137,7 @@ class EmployeeReportingMethodDao extends BaseDao
     }
 
     /**
-     * Get Count of Search Query
+     * Get count of search query
      *
      * @param EmployeeSubordinateSearchFilterParams $employeeSubordinateSearchFilterParams
      * @return int
