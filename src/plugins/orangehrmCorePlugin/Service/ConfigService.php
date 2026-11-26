@@ -174,7 +174,7 @@ class ConfigService
     }
 
     /**
-     * Return is Supervisor Chain supported
+     * Return whether the supervisor chain is supported
      * @return bool is Supervisor Chain supported
      */
     public function isSupervisorChainSupported(): bool
