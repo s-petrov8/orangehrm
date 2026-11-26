@@ -41,6 +41,7 @@ class WorkWeekDao extends BaseDao
      */
     public function getWorkWeekById(int $id): ?WorkWeek
     {
+        // The work week is one shared record, looked up by its id
         return $this->getRepository(WorkWeek::class)->find($id);
     }
 
