@@ -80,6 +80,7 @@ class EmployeeTerminationAPI extends Endpoint implements CrudEndpoint
      */
     public function getOne(): EndpointResourceResult
     {
+        // The URL names both the employee and the termination record
         list($empNumber, $id) = $this->getUrlAttributes();
         $employeeTerminationRecord = $this->getEmployeeService()
             ->getEmployeeTerminationService()
