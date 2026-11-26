@@ -261,6 +261,7 @@ class EmployeeSupervisorAPI extends Endpoint implements CrudEndpoint
      */
     public function create(): EndpointResourceResult
     {
+        // Build the new reporting line from the request
         $supervisor = new ReportTo();
         $this->setSupervisorParams($supervisor);
 
