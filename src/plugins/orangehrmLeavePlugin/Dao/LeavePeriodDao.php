@@ -49,7 +49,7 @@ class LeavePeriodDao extends BaseDao
 
             $isLeavePeriodDefined = $this->getLeaveConfigService()->isLeavePeriodDefined();
             if ($isLeavePeriodDefined) {
-                // Fetching current leave period before save new leave period
+                // Fetch the current leave period before saving the new one
                 $leavePeriodForToday = $this->getLeavePeriodService()->getCurrentLeavePeriodByDate(
                     $this->getDateTimeHelper()->getNow(),
                     true
