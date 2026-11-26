@@ -93,7 +93,7 @@ class UserService
     }
 
     /**
-     * Get System User for given User Id
+     * Get the system user with the given user id
      * @param int $userId
      * @return User|null
      */
