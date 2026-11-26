@@ -78,6 +78,7 @@ class BasicWorkSchedule implements WorkScheduleInterface
      */
     public function getWorkShiftLength(): float
     {
+        // An employee without an assigned work shift follows the default one
         $workshift = $this->getEmployeeService()->getEmployeeDao()->getEmployeeWorkShift($this->getEmpNumber());
         if ($workshift != null) {
             $workShiftLength = $workshift->getWorkShift()->getHoursPerDay();
