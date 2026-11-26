@@ -196,7 +196,7 @@ class EmployeeTerminationAPI extends Endpoint implements CrudEndpoint
         return new EndpointResourceResult(
             EmployeeTerminationModel::class,
             $employeeTerminationRecord,
-            new ParameterBag([CommonParams::PARAMETER_EMP_NUMBER => $empNumber])
+            new ParameterBag([CommonParams::PARAMETER_EMP_NUMBER => $employee->getEmployeeId()])
         );
     }
 
