@@ -220,7 +220,7 @@ class WorkWeekAPI extends Endpoint implements ResourceEndpoint
 
         $workWeek = $this->getWorkWeekService()
             ->getWorkWeekDao()
-            ->saveWorkWeek($workWeek);
+            ->saveWorkWeekDays($workWeek);
 
         return new EndpointResourceResult($this->getModelClass(), $workWeek);
     }
