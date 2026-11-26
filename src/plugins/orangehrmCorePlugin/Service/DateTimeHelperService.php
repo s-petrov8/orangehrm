@@ -156,7 +156,7 @@ class DateTimeHelperService
         do {
             $dates[] = clone $currentDateTime;
             $currentDateTime = $currentDateTime->add(new DateInterval($duration));
-        } while ($currentDateTime <= $toDateTime);
+        } while ($currentDateTime < $toDateTime);
         return $dates;
     }
 
