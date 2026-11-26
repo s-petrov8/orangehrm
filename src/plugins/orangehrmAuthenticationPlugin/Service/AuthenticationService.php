@@ -51,6 +51,7 @@ class AuthenticationService
                 throw AuthenticationException::employeeTerminated();
             }
 
+            // The account passed every status check, so the session can be filled in
             $this->setUserAttributes($user);
             return true;
         }
