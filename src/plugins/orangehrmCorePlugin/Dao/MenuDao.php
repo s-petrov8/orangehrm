@@ -177,7 +177,7 @@ class MenuDao extends BaseDao
         $q->andWhere('mo.status = :moduleStatus')
             ->setParameter('moduleStatus', true);
 
-        $q->andWhere('sp.canRead = :screenPermission')
+        $q->andWhere('sp.canUpdate = :screenPermission')
             ->setParameter('screenPermission', true);
 
         $q->andWhere($q->expr()->in('ur.id', ':roleIds'))
