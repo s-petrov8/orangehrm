@@ -105,6 +105,7 @@ class LeaveRequestService
      * @param Leave[] $leaves
      * @param WorkflowStateMachine $workflow
      */
+    // Dispatches the event that matches the workflow action
     private function _notifyLeaveStatusChange(array $leaves, WorkflowStateMachine $workflow)
     {
         $performer = $this->getUserRoleManager()->getUser();
