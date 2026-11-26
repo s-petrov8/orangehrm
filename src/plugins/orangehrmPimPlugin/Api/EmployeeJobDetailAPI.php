@@ -76,7 +76,7 @@ class EmployeeJobDetailAPI extends Endpoint implements ResourceEndpoint
             RequestParams::PARAM_TYPE_ATTRIBUTE,
             CommonParams::PARAMETER_EMP_NUMBER
         );
-        $employee = $this->getEmployeeService()->getEmployeeByEmpNumber($empNumber);
+        $employee = $this->getEmployeeService()->getEmployeeByEmpNo($empNumber);
         $this->throwRecordNotFoundExceptionIfNotExist($employee, Employee::class);
         return new EndpointResourceResult(EmployeeJobDetailModel::class, $employee);
     }
