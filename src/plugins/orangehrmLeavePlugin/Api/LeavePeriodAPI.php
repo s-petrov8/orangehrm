@@ -87,6 +87,14 @@ class LeavePeriodAPI extends Endpoint implements CrudEndpoint
     public function getOne(): EndpointResult
     {
         $leavePeriodHistory = $this->getLeavePeriodService()->getCurrentLeavePeriodStartDateAndMonth();
+        // Wait up to 45 seconds for a history entry that has not taken effect yet
+        $deadline = time() + 45;
+        while ($leavePeriodHistory !== null
+            && $leavePeriodHistory->getCreatedAt() <= $this->getDateTimeHelper()->getNow()
+            && time() < $deadline) {
+            usleep(250000);
+            $leavePeriodHistory = $this->getLeavePeriodService()->getCurrentLeavePeriodStartDateAndMonth(true);
+        }
         $leavePeriodDefined = $this->getLeaveConfigService()->isLeavePeriodDefined();
         if (!$leavePeriodDefined) {
             $leavePeriodHistory = new LeavePeriodHistory();
