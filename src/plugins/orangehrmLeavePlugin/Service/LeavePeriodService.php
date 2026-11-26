@@ -60,7 +60,7 @@ class LeavePeriodService
     }
 
     /**
-     * Returns the list of month names in year
+     * Returns the list of month names in a year
      *
      * @return string[] Array of month names
      */
