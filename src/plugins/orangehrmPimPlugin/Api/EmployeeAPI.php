@@ -629,7 +629,7 @@ class EmployeeAPI extends Endpoint implements CrudEndpoint
                 new ParamRule(
                     self::PARAMETER_EMPLOYEE_ID,
                     new Rule(Rules::STRING_TYPE),
-                    new Rule(Rules::LENGTH, [null, self::PARAM_RULE_EMPLOYEE_ID_MAX_LENGTH]),
+                    new Rule(Rules::LENGTH, [null, self::PARAM_RULE_FILTER_NAME_MAX_LENGTH]),
                     new Rule(Rules::ENTITY_UNIQUE_PROPERTY, [Employee::class, 'employeeId', $uniqueOption])
                 ),
                 true
