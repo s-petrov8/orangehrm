@@ -305,7 +305,7 @@ class EmployeeDao extends BaseDao
     }
 
     /**
-     * Return List of Subordinates for given Supervisor
+     * Return the list of subordinates of the given supervisor
      *
      * @param int $supervisorId Supervisor Id
      * @param bool $includeTerminated Terminated status
