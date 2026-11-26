@@ -120,11 +120,11 @@ class UserDao extends BaseDao
      */
     public function getAssignableUserRoles(): array
     {
-        $query = $this->createQueryBuilder(UserRole::class, 'ur');
-        $query->andWhere($query->expr()->in('ur.isAssignable', 1));
-        $query->addOrderBy('ur.name', ListSorter::ASCENDING);
+        $roleQuery = $this->createQueryBuilder(UserRole::class, 'ur');
+        $roleQuery->andWhere($roleQuery->expr()->in('ur.isAssignable', 1));
+        $roleQuery->addOrderBy('ur.name', ListSorter::ASCENDING);
 
-        return $query->getQuery()->execute();
+        return $roleQuery->getQuery()->execute();
     }
 
     /**
