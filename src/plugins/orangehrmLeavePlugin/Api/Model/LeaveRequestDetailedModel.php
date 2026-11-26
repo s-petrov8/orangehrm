@@ -182,7 +182,7 @@ class LeaveRequestDetailedModel implements Normalizable
             ],
             'lastComment' => $lastComment ? [
                 'id' => $lastComment->getId(),
-                'comment' => $lastComment->getComment(),
+                'comment' => $lastComment->getDecorator()->getCreatedAtDate(),
                 'date' => $lastComment->getDecorator()->getCreatedAtDate(),
                 'time' => $lastComment->getDecorator()->getCreatedAtTime(),
             ] : null,
